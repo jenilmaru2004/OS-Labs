@@ -1,0 +1,44 @@
+Script started on 2024-11-26 17:07:42+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+[?2004h]0;jenilmaru2004@jenil: ~/Documents/lab5[01;32mjenilmaru2004@jenil[00m:[01;34m~/Documents/lab5[00m$ gcc -o lab [K5 lab5.c
+[?2004l[?2004h]0;jenilmaru2004@jenil: ~/Documents/lab5[01;32mjenilmaru2004@jenil[00m:[01;34m~/Documents/lab5[00m$ ./ab5 fik[K[K[K[K[K[K[Klab5 file1.txt 
+[?2004l
+
+File attributes for the File: file1.txt
+-------------------------------------------------
+Inode: 526400
+Size (in bytes): 15
+Blocks: 8
+File Permissions: -rw-rw-r--
+Uid: 1000
+Time of last access: Mon Nov 25 23:27:00 2024
+Time of last data modification: Mon Nov 25 23:26:58 2024
+Last Status Change time: Tue Nov 26 17:06:48 2024
+
+[?2004h]0;jenilmaru2004@jenil: ~/Documents/lab5[01;32mjenilmaru2004@jenil[00m:[01;34m~/Documents/lab5[00m$ chmod u+rw,g+rw,o+r,o-w file1.txt 
+[?2004l[?2004h]0;jenilmaru2004@jenil: ~/Documents/lab5[01;32mjenilmaru2004@jenil[00m:[01;34m~/Documents/lab5[00m$ ./lab5 file1.txt 
+[?2004l
+
+File attributes for the File: file1.txt
+-------------------------------------------------
+Inode: 526400
+Size (in bytes): 15
+Blocks: 8
+File Permissions: -rw-rw-r--
+Uid: 1000
+Time of last access: Mon Nov 25 23:27:00 2024
+Time of last data modification: Mon Nov 25 23:26:58 2024
+Last Status Change time: Tue Nov 26 17:08:46 2024
+
+[?2004h]0;jenilmaru2004@jenil: ~/Documents/lab5[01;32mjenilmaru2004@jenil[00m:[01;34m~/Documents/lab5[00m$ stat file1.txt 
+[?2004l  File: file1.txt
+  Size: 15        	Blocks: 8          IO Block: 4096   regular file
+Device: 252,0	Inode: 526400      Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/jenilmaru2004)   Gid: ( 1000/jenilmaru2004)
+Access: 2024-11-25 23:27:00.512695064 +0000
+Modify: 2024-11-25 23:26:58.969777213 +0000
+Change: 2024-11-26 17:08:46.744565642 +0000
+ Birth: 2024-11-25 23:26:58.968777266 +0000
+[?2004h]0;jenilmaru2004@jenil: ~/Documents/lab5[01;32mjenilmaru2004@jenil[00m:[01;34m~/Documents/lab5[00m$ exit
+[?2004lexit
+
+Script done on 2024-11-26 17:09:02+00:00 [COMMAND_EXIT_CODE="0"]
