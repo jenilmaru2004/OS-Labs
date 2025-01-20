@@ -1,0 +1,117 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;\red0\green0\blue0;\red7\green56\blue111;
+}
+{\*\expandedcolortbl;;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;\cssrgb\c392\c29020\c50980;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f0\fs36 \cf0 \cb2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 The\'a0
+\f1\b kernel
+\f0\b0 \'a0
+\f1\b module
+\f0\b0 \'a0that creates a proc file named /proc/seconds that reports the number of elapsed\'a0
+\f1\b seconds
+\f0\b0 \'a0since the kernel module was loaded is in the\'a0
+\f1\b explanation
+\f0\b0 \'a0part.\
+\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b\fs42 \cf0 What is kernel module?\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f0\b0\fs36 \cf0 \
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b \cf0 Kernel modules
+\f0\b0 \'a0are chunks of code that can be loaded and unloaded from the kernel as needed. They enhance the\'a0
+\f1\b functionality
+\f0\b0 \'a0of the kernel without requiring a system reboot. A module can be set to be built-in or loadable.\
+\
+Here is an\'a0
+\f1\b example
+\f0\b0 \'a0kernel module that creates a proc file named /proc/seconds that\'a0
+\f1\b reports
+\f0\b0 \'a0the number of elapsed seconds since the kernel module was loaded:\
+\
+#include <linux/module.h>\
+#include <linux/kernel.h>\
+#include <linux/proc_fs.h>\
+#include <linux/jiffies.h>\
+#include <asm/uaccess.h>\
+\
+#define PROC_NAME "seconds"\
+\
+static struct proc_dir_entry *proc_entry;\
+static unsigned long start_time;\
+\
+static int proc_read(char *page, char **start, off_t off,\
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 int count, int *eof, void *data)\
+\{\
+\'a0 \'a0int len;\
+\'a0 \'a0unsigned long elapsed_seconds = (jiffies - start_time) / HZ;\
+\
+\'a0 \'a0if (off > 0) \{\
+\'a0 \'a0 \'a0 \'a0*eof = 1;\
+\'a0 \'a0 \'a0 \'a0return 0;\
+\'a0 \'a0\}\
+\
+\'a0 \'a0len = sprintf(page, "%lu\\n", elapsed_seconds);\
+\'a0 \'a0return len;\
+\}\
+\
+static int __init seconds_init(void)\
+\{\
+\'a0 \'a0proc_entry = create_proc_entry(PROC_NAME, 0, NULL);\
+\
+\'a0 \'a0if (proc_entry == NULL) \{\
+\'a0 \'a0 \'a0 \'a0printk(KERN_INFO "Failed to create proc entry\\n");\
+\'a0 \'a0 \'a0 \'a0return -ENOMEM;\
+\'a0 \'a0\}\
+\
+\'a0 \'a0start_time = jiffies;\
+\
+\'a0 \'a0proc_entry->read_proc = proc_read;\
+\'a0 \'a0proc_entry->mode = S_IFREG | S_IRUGO;\
+\'a0 \'a0proc_entry->uid = 0;\
+\'a0 \'a0proc_entry->gid = 0;\
+\'a0 \'a0proc_entry->size = 0;\
+\
+\'a0 \'a0printk(KERN_INFO "/proc/%s created\\n", PROC_NAME);\
+\
+\'a0 \'a0return 0;\
+\}\
+\
+static void __exit seconds_exit(void)\
+\{\
+\'a0 \'a0remove_proc_entry(PROC_NAME, NULL);\
+\
+\'a0 \'a0printk(KERN_INFO "/proc/%s removed\\n", PROC_NAME);\
+\}\
+\
+module_init(seconds_init);\
+module_exit(seconds_exit);\
+\
+MODULE_LICENSE("GPL");\
+MODULE_DESCRIPTION("Seconds kernel module");\
+\
+Thus, in this\'a0
+\f1\b module
+\f0\b0 , we first define the name of the\'a0
+\f1\b proc
+\f0\b0 \'a0
+\f1\b file
+\f0\b0 \'a0to be created (#define PROC_NAME "seconds").\
+\
+For more details regarding\'a0
+\f1\b kernel module,
+\f0\b0 \'a0visit:\
+\pard\pardeftab720\sa160\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://brainly.com/question/13441311"}}{\fldrslt \cf4 \ul \ulc4 \strokec4 brainly.com/question/13441311}}\
+#SPJ1\
+\
+}
