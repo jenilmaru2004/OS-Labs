@@ -1,1 +1,1 @@
-# OS-Labs
+Completed five projects in C focusing on kernel modules, process management, memory mapping, and synchro- nization using mutex locks and semaphores. Tackled diverse challenges like preventing race conditions, simulating memory management, and implementing efficient synchronization mechanisms.
